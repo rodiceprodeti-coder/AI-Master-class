@@ -3,11 +3,278 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moje Jednoduchá Stránka</title>
+    <title>COOL HÁČKO | Trendy Drobnosti Pro Teenagery</title>
+    <!-- Načtení Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Konfigurace Tailwind pro neonové barvy a Inter font -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'neon-pink': '#E879F9', // Fuchsia-400
+                        'neon-cyan': '#22D3EE',  // Cyan-400
+                        'dark-bg': '#0F172A',   // Slate-900
+                        'dark-card': '#1E293B', // Slate-800
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'neon-pink-sm': '0 0 5px #E879F9',
+                        'neon-pink-md': '0 0 15px #E879F9',
+                        'neon-cyan-md': '0 0 15px #22D3EE',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Nastavení Inter fontu -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Základní styly pro plynulé posouvání a font */
+        body {
+            background-color: #0F172A; /* dark-bg */
+            color: #F1F5F9; /* gray-100 */
+            font-family: 'Inter', sans-serif;
+        }
+        /* Gradient pro text, který vypadá jako neon */
+        .neon-text-gradient {
+            background-image: linear-gradient(to right, #E879F9, #22D3EE);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        /* Animace pro tlačítko/odkaz hover efekt */
+        .neon-button {
+            transition: all 0.3s ease;
+        }
+        .neon-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(232, 121, 249, 0.7); /* Silnější neon stín */
+        }
+
+        /* --- NOVÁ CSS ANIMACE PRO PULZOVÁNÍ PRODUKTŮ --- */
+        @keyframes pulse-subtle {
+            0%, 100% {
+                box-shadow: 0 0 10px rgba(232, 121, 249, 0.4); /* Pink glow */
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(34, 211, 238, 0.6); /* Cyan glow */
+            }
+        }
+        .animate-pulse-subtle {
+            animation: pulse-subtle 4s infinite alternate;
+            border-radius: 0.5rem; /* Zajištění zaoblení rohů */
+        }
+        /* Dodatečný efekt při najetí myši pro wow efekt */
+        .product-image-container:hover {
+             transform: scale(1.02);
+             box-shadow: 0 0 30px rgba(34, 211, 238, 0.8) !important;
+             animation: none; /* Zastaví pulzování při najetí */
+        }
+        /* Aby se animace aplikovala na obal obrázku, ne na samotný obrázek */
+        .product-image-container {
+            transition: all 0.3s ease;
+            box-shadow: 0 0 0 transparent; /* Původní stav bez stínu pro animaci */
+        }
+    </style>
 </head>
-<body>
-    <h1>Vítejte na mé jednoduché HTML stránce!</h1>
-    <p>Toto je odstavec textu, který demonstruje, jak vypadá základní obsah webové stránky.</p>
-    
-    </body>
+<body class="min-h-screen">
+
+    <!-- HLAVIČKA (Header) a NAVIGACE -->
+    <header class="sticky top-0 z-50 bg-dark-bg/95 backdrop-blur-sm shadow-md shadow-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <!-- LOGO: COOL HÁČKO (Neonový styl) -->
+            <a href="#" class="text-3xl font-extrabold tracking-tight">
+                <span class="neon-text-gradient">COOL HÁČKO</span>
+            </a>
+            <!-- Navigační odkazy (pro desktop) -->
+            <nav class="hidden md:flex space-x-8 text-lg font-medium">
+                <a href="#domu" class="text-gray-100 hover:text-neon-pink transition duration-150">Domů</a>
+                <a href="#produkty" class="text-gray-100 hover:text-neon-cyan transition duration-150">Produkty</a>
+                <a href="#omne" class="text-gray-100 hover:text-neon-pink transition duration-150">O mně</a>
+                <a href="#kontakt" class="text-gray-100 hover:text-neon-cyan transition duration-150">Kontakt</a>
+            </nav>
+            <!-- Mobilní menu (zjednodušené pro tuto jednostránku) -->
+            <div class="md:hidden">
+                <button class="text-gray-100 text-2xl p-2 rounded-lg bg-dark-card hover:shadow-neon-pink-sm transition">
+                    <!-- Ikonka menu (hamburger) -->
+                    &#9776;
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-24">
+
+        <!-- 1. SEKCE: HERO (Úvodní) -->
+        <section id="domu" class="text-center py-12 md:py-20">
+            <h1 class="text-5xl sm:text-7xl font-extrabold mb-6 leading-tight">
+                <span class="neon-text-gradient">Háčkování Není Nuda.</span><br>
+                Je to <span class="text-neon-cyan drop-shadow-neon-cyan-md">VIBE.</span>
+            </h1>
+            <p class="text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto mb-10">
+                Zapomeň na dečky a zástěrky. Tady najdeš ručně dělané, jedinečné a **ultracool** doplňky, které doladí tvůj street style.
+            </p>
+            <!-- CTA Tlačítko (Neonový efekt) -->
+            <a href="#produkty" class="inline-block px-10 py-4 text-lg font-bold uppercase rounded-full bg-neon-pink text-dark-bg neon-button shadow-neon-pink-md hover:bg-neon-pink/80">
+                Chci vidět kolekci!
+            </a>
+            
+            <!-- Ilustrace/Placeholder: Křišťálová koule (Symbolizuje VIBE a tvoření) -->
+            <div class="mt-16 flex justify-center">
+                <div class="w-24 h-24 bg-dark-card rounded-full flex items-center justify-center border-4 border-neon-cyan animate-pulse shadow-neon-cyan-md">
+                    <span class="text-5xl" role="img" aria-label="Křišťálová koule">🔮</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. SEKCE: PRODUKTY -->
+        <section id="produkty" class="pt-12">
+            <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-16">
+                <span class="text-neon-cyan">TOP 3</span> Drobnosti
+            </h2>
+            
+            <!-- Grid produktů -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- KARTA PRODUKTU 1: Cyber Beanie (Háčkovaná čepice) -->
+                <div class="bg-dark-card p-6 rounded-xl shadow-lg shadow-slate-800/50 border-2 border-neon-cyan/50 transition duration-300 hover:border-neon-cyan">
+                    <!-- VIZUÁL: Placeholder pro uháčkovanou čepici s neonovou aplikací a PULZUJÍCÍ EFEKT -->
+                    <div class="w-full h-48 bg-gray-700 rounded-lg mb-4 overflow-hidden transform transition duration-300 product-image-container animate-pulse-subtle">
+                        <!-- Změněný placeholder pro zobrazení neonové čepice s lebkou -->
+                        <img src="https://placehold.co/400x300/1e293b/E879F9?text=Uháčkovaná+Čepice+Skull+%0AVIZUÁL" 
+                             alt="Háčkovaná čepice Cyber Beanie" 
+                             class="w-full h-full object-cover" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/400x300/1E293B/E879F9?text=Obrázek+není+dostupný';" />
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-neon-pink">Cyber Beanie</h3>
+                    <p class="text-gray-300 mb-4">Must-have kousek. Unisex, s reflexními vlákny. Ideální na festivaly i do města.</p>
+                    <a href="#" class="text-neon-cyan font-semibold hover:underline flex items-center">
+                        Prohlédnout detaily <span>&rarr;</span>
+                    </a>
+                </div>
+
+                <!-- KARTA PRODUKTU 2: Froggy Mini Bag (Háčkovaný mini batoh) -->
+                <div class="bg-dark-card p-6 rounded-xl shadow-lg shadow-slate-800/50 border-2 border-neon-pink/50 transition duration-300 hover:border-neon-pink">
+                    <!-- VIZUÁL: Placeholder pro uháčkovaný mini batoh ve tvaru žáby a PULZUJÍCÍ EFEKT -->
+                    <div class="w-full h-48 bg-gray-700 rounded-lg mb-4 overflow-hidden transform transition duration-300 product-image-container animate-pulse-subtle" style="animation-delay: 1s;">
+                        <!-- Změněný placeholder pro zobrazení háčkované žáby -->
+                        <img src="https://placehold.co/400x300/1e293b/22D3EE?text=Uháčkovaná+Žába+Batoh+%0AVIZUÁL" 
+                             alt="Háčkovaný mini batoh Žába" 
+                             class="w-full h-full object-cover" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/400x300/1E293B/22D3EE?text=Obrázek+není+dostupný';" />
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-neon-cyan">Froggy Mini Bag</h3>
+                    <p class="text-gray-300 mb-4">Cute a praktický mini batůžek ve tvaru žabičky. Dost cool na to, aby ho nosil i kluk.</p>
+                    <a href="#" class="text-neon-pink font-semibold hover:underline flex items-center">
+                        Prohlédnout detaily <span>&rarr;</span>
+                    </a>
+                </div>
+
+                <!-- KARTA PRODUKTU 3: Ghost Keychains (Háčkovaný přívěsek) -->
+                <div class="bg-dark-card p-6 rounded-xl shadow-lg shadow-slate-800/50 border-2 border-neon-cyan/50 transition duration-300 hover:border-neon-cyan">
+                    <!-- VIZUÁL: Placeholder pro uháčkovanou klíčenku Duch a PULZUJÍCÍ EFEKT -->
+                    <div class="w-full h-48 bg-gray-700 rounded-lg mb-4 overflow-hidden transform transition duration-300 product-image-container animate-pulse-subtle" style="animation-delay: 2s;">
+                        <!-- Změněný placeholder pro zobrazení háčkovaného ducha -->
+                        <img src="https://placehold.co/400x300/1e293b/F1F5F9?text=Uháčkovaný+Přívěsek+Duch+%0AVIZUÁL" 
+                             alt="Háčkovaná klíčenka Duch" 
+                             class="w-full h-full object-cover" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/400x300/1E293B/E879F9?text=Obrázek+není+dostupný';" />
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-neon-pink">Ghost Keychains</h3>
+                    <p class="text-gray-300 mb-4">Malí, styloví duchové a příšerky na klíče nebo batoh. Vlastní barvy na přání.</p>
+                    <a href="#" class="text-neon-cyan font-semibold hover:underline flex items-center">
+                        Prohlédnout detaily <span>&rarr;</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block px-8 py-3 text-lg font-bold rounded-full bg-neon-cyan text-dark-bg neon-button shadow-neon-cyan-md hover:bg-neon-cyan/80">
+                    Všechny Doplňky
+                </a>
+            </div>
+        </section>
+
+        <!-- 3. SEKCE: O MNĚ / MISE -->
+        <section id="omne" class="pt-12">
+            <div class="bg-dark-card p-8 md:p-12 rounded-2xl border-4 border-neon-pink/30">
+                <h2 class="text-4xl font-extrabold mb-6 text-center">
+                    Naše <span class="text-neon-pink">#CROCHETGOALS</span>
+                </h2>
+                <div class="text-lg space-y-6 max-w-4xl mx-auto">
+                    <p>
+                        Ahoj, jsem <span class="font-bold text-neon-cyan">Kreativec</span> a tvořím COOL HÁČKO, protože mě nebavilo, že háčkování je vnímáno jako něco staromódního. Háčkování je umění, které ti umožní nosit něco, co nikdo jiný nemá.
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li class="pl-4">🔥 **Limitované Edice:** Každý kousek je originál a nikdy nedělám dva identické.</li>
+                        <li class="🌈 **Udržitelnost:** Používám recyklované nebo lokální příze. Buď trendy a ekologický zároveň.</li>
+                        <li class="✨ **Tvoje Vize:** Chceš háčkovanou repliku tvého oblíbeného herního charakteru? Napiš a domluvíme se!</li>
+                    </ul>
+                    <p class="pt-4 text-center text-xl italic text-neon-pink">
+                        "Nejsme jen e-shop. Jsme komunita tvůrců."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. SEKCE: KONTAKT -->
+        <section id="kontakt" class="pt-12 pb-20">
+            <h2 class="text-4xl sm:text-5xl font-extrabold text-center mb-16">
+                <span class="text-neon-cyan">Dej Vědět!</span>
+            </h2>
+            <div class="max-w-xl mx-auto bg-dark-card p-8 rounded-xl shadow-lg border-2 border-neon-cyan/50">
+                <p class="text-gray-300 mb-6 text-center">Máš dotaz, nápad na spolupráci, nebo chceš objednat vlastní kousek? Ozvi se!</p>
+                <form action="#" method="POST" class="space-y-4">
+                    <div>
+                        <label for="jmeno" class="block text-sm font-medium text-gray-100 mb-1">Jméno / Nickname</label>
+                        <input type="text" id="jmeno" name="jmeno" class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 focus:ring-neon-pink focus:border-neon-pink text-gray-100" placeholder="Tvé cool jméno" required>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-100 mb-1">E-mail</label>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 focus:ring-neon-cyan focus:border-neon-cyan text-gray-100" placeholder="tvuj@email.com" required>
+                    </div>
+                    <div>
+                        <label for="zprava" class="block text-sm font-medium text-gray-100 mb-1">Zpráva</label>
+                        <textarea id="zprava" name="zprava" rows="4" class="w-full px-4 py-3 rounded-lg bg-slate-700 border border-slate-600 focus:ring-neon-pink focus:border-neon-pink text-gray-100" placeholder="Co tě zajímá..."></textarea>
+                    </div>
+                    <div class="text-center pt-4">
+                        <button type="submit" class="w-full px-6 py-3 text-lg font-bold uppercase rounded-lg bg-neon-pink text-dark-bg neon-button shadow-neon-pink-sm hover:bg-neon-pink/80">
+                            Odeslat Zprávu
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ZÁPATÍ (Footer) -->
+    <footer class="bg-dark-card mt-12 py-8 border-t border-slate-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400 mb-4">© 2024 COOL HÁČKO. Všechna práva vyhrazena. #CrochetVibe</p>
+            <!-- Sociální média (zjednodušené - textové odkazy) -->
+            <div class="space-x-6">
+                <a href="#" class="text-neon-cyan hover:text-neon-pink transition">Instagram</a>
+                <a href="#" class="text-neon-cyan hover:text-neon-pink transition">TikTok</a>
+                <a href="#" class="text-neon-cyan hover:text-neon-pink transition">Pinterest</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Jednoduchý JS pro plynulé posouvání (lepší uživatelský zážitek) -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+</body>
 </html>
